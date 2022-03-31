@@ -25,13 +25,14 @@ class Category extends Model
   public function showCategories()
   {
     try {
-      $sql = "SELECT * FROM categorias";
-      $data = $this->connection->query($sql,PDO::FETCH_ASSOC);
+      $sql = $this->connection->query("SELECT * FROM categorias");
+      $categories = $sql->fetchAll(PDO::FETCH_OBJ);
+      /*$data = $this->connection->query($sql,PDO::FETCH_ASSOC);
       $categories=[];
       foreach ($data as $row) {
         $category = new Category($row['id'],$row['nombre']);
         array_push($categories,$category);
-      }
+      }*/
       return $categories;
     } catch (PDOException $e) {
       die("Error, no se pueden listar las categorias: ". $e->getMessage());

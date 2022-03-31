@@ -12,7 +12,23 @@ class CategoryController extends Controller
   {
     $category = new Category();
     $categories = $category->showCategories();
-    //$this->view->categories = $categories;
-    $this->view->show('category/list',$categories);
+    $this->view->categories = $categories;
+    $this->view->show('category/list');
+  }
+
+  public function create()
+  {
+    $this->view->show('category/create');
+  }
+
+  public function saveCategory()
+  {
+    $nombre = $_POST['nombre'] ?? "";
+
+    $category = new Category();
+    $category->save($nombre);
+    /*if ($category->save($nombre)) {
+      $this->index();
+    }*/ 
   }
 }

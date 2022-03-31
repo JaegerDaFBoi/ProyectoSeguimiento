@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container-fluid">
   <div class="row">
     <div class="col-md-12">
       <h1>Lista de categorias</h1>
@@ -13,10 +13,10 @@
         </tr>
       </thead>
       <tbody>
-        <?php foreach ($categories as $category) { ?>
+        <?php foreach ($this->categories as $category) { ?>
           <tr>
             <td><?php echo $category->id ?></td>
-            <td><?php echo $category->name ?></td>
+            <td><?php echo $category->nombre ?></td>
           </tr>
           <?php } ?>
       </tbody>
