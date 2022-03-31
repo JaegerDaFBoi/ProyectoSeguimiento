@@ -37,4 +37,39 @@ class Product extends Model
       die("Error al mostrar datos: ".$e->getMessage());
     }
   }
+
+  public function search()
+  {
+    try {
+      $sql = $this->connection->query("SELECT * FROM productos WHERE id=".$_GET['id']);
+      $product = $sql->fetchAll(PDO::FETCH_OBJ);
+      return $product;
+    } catch (PDOException $e) {
+      die("Error al mostrar datos: ".$e->getMessage());
+    }
+  }
+
+  public function update($id)
+  {
+    $this->id = $id;
+    try {
+      $sql = "UPDATE productos SET nombre=:nombre, precio=:precio, fk_categoria=:categoria WHERE id=:id";
+      $query = $this->connection->prepare($sql);
+      $query->execute([":nombre"=>$this->name, ":precio"=>$this->price, ":categoria"=>$this->category,":id"=>$id]);
+    } catch (PDOException $e) {
+      die("Error al actualizar datos: ".$e->getMessage());
+    }
+  }
+
+  public function delete ($id)
+  {
+    $this->id = $id;
+    try {
+      $sql = "DELETE FROM productos WHERE id=:id";
+      $query = $this->connection->prepare($sql);
+      $query->execute([":id"=>$id]);
+    } catch (PDOException $e) {
+      die("Error al eliminar datos: ".$e->getMessage());
+    }
+  }
 }

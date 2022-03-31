@@ -39,4 +39,9 @@
     </div>
   </div>
   </form>
+  <div class="row">
+    <div class="col-md-12">
+      <p><a href="<?php echo APP_URL; ?>/product/index">Volver a lista de productos</a></p>
+    </div>
+  </div>
 </div>
